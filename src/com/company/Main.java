@@ -22,5 +22,6 @@ public class Main {
             ctl.update_board(i);
         }
 
+
     }
 }
