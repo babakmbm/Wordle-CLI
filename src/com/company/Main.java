@@ -17,6 +17,10 @@ public class Main {
         System.out.println("\n");
         System.out.println("The Secret Word is: " + secret_word);
         ctl.create_board();
+        for(int i=0; i<6; i++){
+            ctl.setGuess();
+            ctl.update_board(i);
+        }
 
     }
 }
