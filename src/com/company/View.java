@@ -63,11 +63,21 @@ public class View {
         this.print_board();
     }
 
-    public void winner(){
-        System.out.println("YOU WIN!");
-        //System.out.println("YOU WON IN " + 5 + " attempts!");
+    public void winner(int attempt){
+        attempt = attempt+1;
+        System.out.println();
+        System.out.println("CONGRATULATIONS YOU WIN!");
+        if(attempt==1) {
+            System.out.println("YOU WON IN " + attempt + " attempt!");
+        }else {
+            System.out.println("YOU WON IN " + attempt + " attempts!");
+        }
     }
 
+    public void loser(){
+        System.out.println("YOU Lose!");
+        System.out.println("YOU are out of attempts!");
+    }
 
     public String printWithColors(String guess_word, String secret_word) {
         String output = "";
