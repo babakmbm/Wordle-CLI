@@ -21,6 +21,7 @@ public class Main {
             ctl.setGuess();
             ctl.update_board(i);
         }
+        //ctl.compare_letters();
 
 
     }

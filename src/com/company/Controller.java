@@ -16,9 +16,9 @@ public class Controller {
     public String getSecretWord(ArrayList<String> list){
         randomGenerator = new Random();
         int index = randomGenerator.nextInt(list.size());
-        this.secret_word = list.get(index);
+        this.secret_word = list.get(index).toUpperCase();
         //System.out.println("The secret word is: " + this.secret_word );
-        return this.secret_word.toUpperCase();
+        return this.secret_word;
     }
 
     public void create_board(){
@@ -49,18 +49,36 @@ public class Controller {
         System.out.println("Attempt Number:" + attempt);
         System.out.println();
 
-
         if (this.guess_word.length() == 5) {
+            //String highlight_guess_word = view.printCompare(this.guess_word.toUpperCase(), this.secret_word.toUpperCase());
             ArrayList<Character> guess_chars = new ArrayList<Character>();
             for (char c : this.guess_word.toCharArray()) {
                 guess_chars.add(c);
             }
-            // TODO: Check the characters one by one
-            // TODO: If guess word contains any of the characters in the secret word find their position
-            // TODO: If the word is available in the common words
             view.setBoard(guess_chars, attempt);
+            this.compare_letters();
         }else{
             System.out.println("The guess word should be exactly 5 characters!");
         }
     }
+
+    public void compare_letters(){
+        int flag = 0; // 0 = contains but not in place// 1 = contains and in place// -1 = does not contain
+        for (int n=0; n<guess_word.length(); n++){
+            char nthChar = guess_word.charAt(n);
+            if(n<secret_word.length() && nthChar == secret_word.charAt(n)){
+                flag = 1;
+                view.printMessage(flag, nthChar);
+            }else if(secret_word.contains(String.valueOf(nthChar))){
+                flag = 0;
+                view.printMessage(flag, nthChar);
+            }else {
+                flag = -1;
+                view.printMessage(flag, nthChar);
+            }
+        }
+    }
+
+
+
 }
